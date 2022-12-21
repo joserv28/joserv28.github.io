@@ -60,6 +60,16 @@ export class AgregarComponent implements OnInit {
         nuevosRegistros.push(registro);
         localStorage.setItem("registros", JSON.stringify(nuevosRegistros));
       }
+      //gastos e ingresos
+      if(localCategoria == 'ingreso'){
+        let localIngreso = localStorage.getItem("ingresos");
+        localIngreso = localIngreso + localMonto;
+        localStorage.setItem('ingresos', JSON.stringify(localIngreso));
+      }else{
+        let localGasto = localStorage.getItem("gastos");
+        localGasto = localGasto + localMonto;
+        localStorage.setItem('gastos', JSON.stringify(localGasto));
+      }
       this.router.navigateByUrl('/gastos');
     }
 

@@ -29,7 +29,9 @@ const ELEMENT_DATA: Registros[] = [
 export class GastosComponent implements OnInit {
   displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
   dataSource = ELEMENT_DATA;
-  
+  ingresos:number = 0;
+  gastos:number = 0;
+  presupuesto:number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,18 +45,38 @@ export class GastosComponent implements OnInit {
     }else{
       this.dataSource = [];
     }
+    this.getData();
     
+  }
+
+  getData(){
+    const localIngresos = localStorage.getItem("ingresos");
+    const localGastos = localStorage.getItem("gastos");
+    const localPresupuesto = localStorage.getItem('presupuesto');
+    if(localIngresos){
+      this.ingresos = +localIngresos;
+    }
+    if(localGastos){
+      this.gastos = +localGastos;
+    }
+    if(localPresupuesto){
+      this.presupuesto = +localPresupuesto;
+    }
   }
 
   goToAdd(){
     this.router.navigateByUrl('/agregar');
   }
 
-  editar(index:number){
+  goToHome(){
+    this.router.navigateByUrl('/home');
+  }
 
+  editar(index:number){
+    this.router.navigateByUrl('/editar', { state: { id: index} });
   }
 
   eliminar(index:number){
-
+    this.router.navigateByUrl('/eliminar', { state: { id: index} });
   }
 }

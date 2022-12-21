@@ -38,4 +38,14 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></tr>
   </table>
+
+  <br>
+  <mat-divider></mat-divider>
+  <section>
+    <div class="example-button-row">
+      <button (click)="goToHome()" mat-button>Presupuesto</button>
+      <button color="primary" mat-button>Gastos Totales</button>
+      <button mat-button>Balance: {{(presupuesto + ingresos) - gastos}}</button>
+    </div>
+  </section>
 </div>

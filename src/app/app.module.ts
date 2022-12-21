@@ -9,13 +9,17 @@ import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material/material.module';
 import { GastosComponent } from './gastos/gastos.component';
 import { AgregarComponent } from './agregar/agregar.component';
+import { EliminarComponent } from './eliminar/eliminar.component';
+import { EditarComponent } from './editar/editar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GastosComponent,
-    AgregarComponent
+    AgregarComponent,
+    EliminarComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

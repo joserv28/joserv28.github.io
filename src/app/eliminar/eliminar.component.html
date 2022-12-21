@@ -1,0 +1,23 @@
+<!-- Toolbar -->
+<mat-toolbar>
+  <span>Record de gastos JRV / Eliminar Registro</span>
+</mat-toolbar>
+  
+<div class="parent">
+  <mat-label>Nombre: {{element.nombre}}</mat-label>
+
+  <br>
+
+  <mat-label>Categoria: {{element.categoria}}</mat-label>
+
+  <br>
+
+  <mat-label>Monto: {{element.monto}}</mat-label>
+
+  <br>
+  <mat-label>Al presionar eliminar, el registro se va borrar</mat-label>
+  <br>
+  <button (click)="eliminar()" mat-button color="warn">Eliminar</button>
+  <br>
+  <button (click)="back()" mat-raised-button color="primary">Regresar</button>
+</div>
