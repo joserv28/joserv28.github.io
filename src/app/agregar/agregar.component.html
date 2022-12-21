@@ -1,0 +1,41 @@
+<!-- Toolbar -->
+<mat-toolbar>
+    <span>Record de gastos JRV / Agregar Registro</span>
+  </mat-toolbar>
+  
+  <div class="parent">
+    <form [formGroup]="agregarRegistroForm" (ngSubmit)="onSubmit()">
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre:</mat-label>
+        <input type="text" matInput placeholder="Factura" formControlName="nombre" />
+      </mat-form-field>
+    
+      <br>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Categoria:</mat-label>
+        <mat-select formControlName="categoria">
+          <mat-option *ngFor="let category of categories" [value]="category.value">
+            {{category.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <br>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Monto:</mat-label>
+        <input type="number" matInput placeholder="1000" formControlName="monto" />
+      </mat-form-field>
+    
+      <br>
+    
+      <p>Complete los campos requeridos para habilitar el boton</p>
+      <button type="submit" [disabled]="!agregarRegistroForm.valid" mat-raised-button color="primary">Guardar</button>
+  
+    </form>
+    <br>
+    <button (click)="back()" mat-raised-button color="primary">Regresar</button>
+  </div>
+  

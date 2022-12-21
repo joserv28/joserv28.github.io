@@ -38,7 +38,7 @@
     <div class="example-button-row">
       <button mat-button color="primary">Presupuesto</button>
       <button (click)="goToGastos()" mat-button>Gastos Totales</button>
-      <button mat-button>Balance: 100000</button>
+      <button mat-button>Balance: {{(presupuesto + ingresos) - gastos}}</button>
     </div>
   </section>
 </div>

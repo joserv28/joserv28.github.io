@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   presupuesto:number = 0;
+  ingresos:number = 0;
+  gastos:number = 0;
   divisa:string = 'No asignada';
   existPresupuesto:boolean = false;
   presupuestoForm = this.formBuilder.group({
@@ -15,7 +18,10 @@ export class HomeComponent implements OnInit {
     divisa: [''],
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     const localPresupuesto = localStorage.getItem('presupuesto');
@@ -37,6 +43,7 @@ export class HomeComponent implements OnInit {
       const localPresupuesto = this.presupuestoForm.value.presupuesto;
       this.presupuesto = +localPresupuesto;
       localStorage.setItem('presupuesto', JSON.stringify(this.presupuesto));
+      localStorage.setItem("registros", JSON.stringify([]));
     }
     if(this.presupuestoForm.value.divisa){
       this.divisa = this.presupuestoForm.value.divisa;
@@ -52,8 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToGastos() {
-    // TODO: redirecto to gastos
-    console.log('go to Gastos');
+    this.router.navigateByUrl('/gastos');
   }
 
   get formControls(){

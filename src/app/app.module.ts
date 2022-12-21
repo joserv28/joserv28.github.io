@@ -7,11 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material/material.module';
+import { GastosComponent } from './gastos/gastos.component';
+import { AgregarComponent } from './agregar/agregar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GastosComponent,
+    AgregarComponent
   ],
   imports: [
     BrowserModule,
