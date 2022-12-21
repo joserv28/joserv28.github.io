@@ -1,6 +1,6 @@
 <!-- Toolbar -->
 <mat-toolbar>
-  <span>Record de gastos JRV / Inicio</span>
+  <span>Record de gastos JRV / Presupuesto</span>
 </mat-toolbar>
 
 <div class="parent">
@@ -8,7 +8,8 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Presupuesto:</mat-label>
-      <input matInput placeholder="1000000" formControlName="presupuesto" />
+      <input type="number" matInput placeholder="1000000" formControlName="presupuesto" />
+      <!--<div *ngIf="formControls.presupuesto.errors.pattern">Enter only number.</div>-->
     </mat-form-field>
   
     <br>
@@ -19,7 +20,25 @@
     </mat-form-field>
   
     <p>Complete los campos requeridos para habilitar el boton</p>
-    <button type="submit" [disabled]="!presupuestoForm.valid">Guardar</button>
-  
+    <button type="submit" [disabled]="!presupuestoForm.valid || existPresupuesto" mat-raised-button color="primary">Guardar</button>
+
   </form>
+
+  <br>
+  <p>Presupuesto asignado: {{presupuesto}}</p>
+  <br>
+  <p>Divisa asignada: {{divisa}}</p>
+  <br>
+  <button (click)="restart()" mat-raised-button color="primary">Reiniciar Presupuesto</button>
+  <br>
+
+  <br>
+  <mat-divider></mat-divider>
+  <section>
+    <div class="example-button-row">
+      <button mat-button color="primary">Presupuesto</button>
+      <button (click)="goToGastos()" mat-button>Gastos Totales</button>
+      <button mat-button>Balance: 100000</button>
+    </div>
+  </section>
 </div>
