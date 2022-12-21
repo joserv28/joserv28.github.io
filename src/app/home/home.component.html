@@ -1,1 +1,25 @@
-<p>home works!</p>
+<!-- Toolbar -->
+<mat-toolbar>
+  <span>Record de gastos JRV / Inicio</span>
+</mat-toolbar>
+
+<div class="parent">
+  <form [formGroup]="presupuestoForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Presupuesto:</mat-label>
+      <input matInput placeholder="1000000" formControlName="presupuesto" />
+    </mat-form-field>
+  
+    <br>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Divisa:</mat-label>
+      <input matInput placeholder="$" formControlName="divisa" />
+    </mat-form-field>
+  
+    <p>Complete los campos requeridos para habilitar el boton</p>
+    <button type="submit" [disabled]="!presupuestoForm.valid">Guardar</button>
+  
+  </form>
+</div>
