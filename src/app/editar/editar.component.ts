@@ -30,6 +30,11 @@ export class EditarComponent implements OnInit {
     {value: 'vivienda', viewValue: 'Vivienda'},
     {value: 'transporte', viewValue: 'Transporte'},
   ];
+  element:any = {
+    nombre: '',
+    categoria: '',
+    monto: 0
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +42,16 @@ export class EditarComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
+    const localRegistros = localStorage.getItem("registros");
+    if(localRegistros){
+      let elements = JSON.parse(localRegistros);
+      this.element = elements[window.history.state.id];
+      this.agregarRegistroForm.setValue({
+        nombre: this.element.nombre,
+        categoria: this.element.categoria,
+        monto: this.element.monto
+      }); 
+    }
   }
 
   onSubmit(){
@@ -53,22 +67,27 @@ export class EditarComponent implements OnInit {
       let localRegistros = localStorage.getItem("registros");
       if(localRegistros){
         let nuevosRegistros = JSON.parse(localRegistros);
-        nuevosRegistros.push(registro);
+        nuevosRegistros[window.history.state.id] = registro;
         localStorage.setItem("registros", JSON.stringify(nuevosRegistros));
       }else{
         let nuevosRegistros = [];
-        nuevosRegistros.push(registro);
+        nuevosRegistros[window.history.state.id] = registro;
         localStorage.setItem("registros", JSON.stringify(nuevosRegistros));
       }
-      //gastos e ingresos
-      if(localCategoria == 'ingreso'){
-        let localIngreso = localStorage.getItem("ingresos");
-        localIngreso = localIngreso + localMonto;
-        localStorage.setItem('ingresos', JSON.stringify(localIngreso));
-      }else{
-        let localGasto = localStorage.getItem("gastos");
-        localGasto = localGasto + localMonto;
-        localStorage.setItem('gastos', JSON.stringify(localGasto));
+      let localRegistros2 = localStorage.getItem("registros");
+      if(localRegistros2){
+        let elements = JSON.parse(localRegistros2);
+        let ingresos = 0;
+        let gastos = 0;
+        for (var i = 0; i < elements.length; i+=1) {
+          if(elements[i].categoria == 'ingreso'){
+            ingresos = ingresos + elements[i].monto;
+          }else{
+            gastos = gastos + elements[i].monto;
+          }
+        }
+        localStorage.setItem('ingresos', JSON.stringify(ingresos));
+        localStorage.setItem('gastos', JSON.stringify(gastos));
       }
       this.router.navigateByUrl('/gastos');
     }
