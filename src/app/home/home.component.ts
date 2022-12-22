@@ -35,6 +35,18 @@ export class HomeComponent implements OnInit {
     }else{
       this.existPresupuesto = false;
     }
+    this.getData();
+  }
+
+  getData(){
+    const localIngresos = localStorage.getItem("ingresos");
+    const localGastos = localStorage.getItem("gastos");
+    if(localIngresos){
+      this.ingresos = +localIngresos;
+    }
+    if(localGastos){
+      this.gastos = +localGastos;
+    }
   }
 
   onSubmit() {
