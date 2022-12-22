@@ -34,6 +34,17 @@ export class EliminarComponent {
     if(localRegistros){
       let elements = JSON.parse(localRegistros);
       elements = elements.filter((el: any,index: any) => index != window.history.state.id);
+      let ingresos = 0;
+      let gastos = 0;
+      for (var i = 0; i < elements.length; i+=1) {
+        if(elements[i].categoria == 'ingreso'){
+          ingresos = ingresos + elements[i].monto;
+        }else{
+          gastos = gastos + elements[i].monto;
+        }
+      }
+      localStorage.setItem('ingresos', JSON.stringify(ingresos));
+      localStorage.setItem('gastos', JSON.stringify(gastos));
       localStorage.setItem("registros", JSON.stringify(elements));
       this.router.navigateByUrl('/gastos');
     }
